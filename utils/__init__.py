@@ -108,7 +108,9 @@ def init_checkpoint(exe, init_checkpoint_path, main_program):
     """Initialize from checkpoint."""
     assert os.path.exists(
         init_checkpoint_path), "[%s] cann't be found." % init_checkpoint_path
-    
+
+    assert os.path.isdir(init_checkpoint_path), f"[{init_checkpoint_path}] is not a directory"
+
     def existed_persitables(var):
         """Whether var is a persistables."""
         if not fluid.io.is_persistable(var):
